@@ -15,18 +15,20 @@ https://stackoverflow.com/questions/8751020/how-to-get-a-pixels-x-y-coordinate-c
 var shapeDimesion = 20;
 var globalXstart, globalYstart, globalXend, globalYend;
 var sectionsQuantity = 10;
+var yline;
+var animationForward ;
 
 
 
-document.addEventListener("click", handleClick, false);
+// document.addEventListener("click", handleClick, false);
 
-function handleClick(Event) {
-    var viewPortx = Event.x;
-    var viewPorty = Event.y;
-    console.log('x= ', viewPortx);
-    document.writeln('x=', viewPortx);
-    document.writeln('y= ', viewPorty);
-}
+// function handleClick(Event) {
+//     var viewPortx = Event.x;
+//     var viewPorty = Event.y;
+//     console.log('x= ', viewPortx);
+//     document.writeln('x=', viewPortx);
+//     document.writeln('y= ', viewPorty);
+// }
 
 
 var shape = document.getElementById('shape');
@@ -45,6 +47,18 @@ function CalculateXposition(x) {
     return sizeToString + 'px';
 }
 
+var buttonForward=document.getElementById('forward');
+buttonForward.addEventListener('click',SetForward)
+var buttonReverse=document.getElementById('reverse');
+buttonReverse.addEventListener('click',SetReverse)
+function SetForward() {
+    animationForward=true;
+}
+function SetReverse() {
+    animationForward=false;   
+}
+
+
 
 
 class MainData {
@@ -52,7 +66,7 @@ class MainData {
         this.sectionNumber = sectionNumber;
         this.initialization();
     }
-    static animationDirectionForward = true;  //if
+     animationForward /* = true */;  //if
     static currentSection = 0;
     currentX;
 
@@ -63,7 +77,7 @@ class MainData {
     part;
 
 
-    //coordinates of actual section defining by sectionNumber
+    //  coordinates of actual section defining by sectionNumber
     XDstart;
     YDstart;
     XDend;
@@ -94,7 +108,7 @@ class MainData {
 
 
     setAnimationDirectionForward(value) {
-        animationDirectionForward = value;
+        animationDirection = value;
     }
 
     getActualY() {
@@ -113,7 +127,9 @@ class MainData {
         this.sectionNumber = number;
     }
 
-    //getcurrentX()
+    getcurrentX() {
+        return this.currentX;
+    }
 
     loadSectionsCoordinates() {
         this.XDstart = this.coordinatesArray[this.sectionNumber].Xstart;
@@ -151,8 +167,8 @@ class MainData {
         this.XminCoordinate = this.coordinatesArray[9].Xend;
         this.part = 0;
         this.currentX = this.coordinatesArray[0].Xstart;
-        //    this.currentX=543;
         this.calculateSope();
+        animationForward = true;
     }
 
     incrementX_part1() {
@@ -200,7 +216,38 @@ class MainData {
     }
 
 
-    incrementX_part0() {
+    // incrementX_part0() {
+    //     switch (this.sectionNumber) {
+    //         case 0: this.currentX++; break;
+    //         case 1: this.currentX--; break;
+    //         case 2: this.currentX++; break;
+    //         case 3: this.currentX--; break;
+    //         case 4: this.currentX++; break;
+    //     }
+    //     if (this.currentX == this.XmaxCoordinate) {//the shape most bottom point reached
+    //         this.part = 1;
+    //         this.sectionNumber++;
+    //         console.log(this.sectionNumer <= sectionsQuantity, 'sectionNumer greater then max number,function incrementX_part0')
+    //         this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
+    //         this.currentX = this.coordinatesArray[this.sectionNumber].Xstart;
+    //         this.calculateYActual(this.currentX);
+    //         return this.YActual;
+    //     }
+    //     else if (this.currentX == this.coordinatesArray[this.sectionNumber].Xend) {
+    //         this.sectionNumber++;
+    //         console.log(this.sectionNumer <= sectionsQuantity, 'sectionNumer greater then max number,function incrementX_part0')
+    //         this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
+    //         this.currentX = this.coordinatesArray[this.sectionNumber].Xstart;
+    //         this.calculateYActual(this.currentX);
+    //         return this.YActual;
+    //     }
+    //     else {
+    //         this.calculateYActual(this.currentX);
+    //         return this.YActual;
+    //     }
+    // }//incrementX_part0()
+
+    incrementP0Forward() {
         switch (this.sectionNumber) {
             case 0: this.currentX++; break;
             case 1: this.currentX--; break;
@@ -229,10 +276,49 @@ class MainData {
             this.calculateYActual(this.currentX);
             return this.YActual;
         }
+
+    }//incrementP0Forward()
+
+    incrementP0Reverse() {
+        switch (this.sectionNumber) {
+            case 0: this.currentX--; break;
+            case 1: this.currentX++; break;
+            case 2: this.currentX--; break;
+            case 3: this.currentX++; break;
+            case 4: this.currentX--; break;
+        }
+        if ((this.sectionNumber==0) && (this.currentX <= this.coordinatesArray[this.sectionNumber].Xstart)) {//the shape most bottom point reached
+            clearInterval(animationTimer);
+        }
+else if (this.currentX == this.coordinatesArray[this.sectionNumber].Xstart) {
+            this.sectionNumber--;
+            console.log(this.sectionNumer <= sectionsQuantity, 'sectionNumer greater then max number,function incrementX_part0')
+            this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
+            this.currentX = this.coordinatesArray[this.sectionNumber].Xend;
+            this.calculateYActual(this.currentX);
+            return this.YActual;
+        }
+        else {
+            this.calculateYActual(this.currentX);
+            return this.YActual;
+        }
+
+    }//incrementP0Reverse
+
+
+    incrementX_part0() {
+        if (animationForward) {
+            return this.incrementP0Forward();
+        }
+        else {
+            return this.incrementP0Reverse();
+        }
+
     }
 
-}//class MainData end
 
+
+}//class MainData end
 
 var coordinatesTableSection0 = {
     Xstart: 305,
@@ -323,31 +409,32 @@ var coordinatesTableSection10 = {
 };
 
 
-var yline = 0;
+
 
 
 pMainData = new MainData(0);
 
 
 var animationTimer = setInterval(TimerXPlus, 50);
+var lineY;
 
 function TimerXPlus() {
     console.assert((pMainData.part >= 0) && (pMainData.part <= 2), 'function TimerXPlus - not valid pMainData.part')
     switch (pMainData.part) {
         case 0:
-            yline = pMainData.incrementX_part0();
+            lineY = pMainData.incrementX_part0();
             break;
         case 1:
-            yline = pMainData.incrementX_part1();
+            lineY = pMainData.incrementX_part1();
             break;
         case 2:
-            yline = pMainData.incrementX_part2();
+            lineY = pMainData.incrementX_part2();
             break;
     }
-
-
-    shape.style.top = CalculateYposition(yline);
+    shape.style.top = CalculateYposition(lineY);
     shape.style.left = CalculateXposition(pMainData.currentX);
+
+
 
 }
 
