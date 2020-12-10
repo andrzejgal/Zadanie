@@ -1,0 +1,23 @@
+
+.main-content {
+    position:relative;
+     background-color: plum;
+    top:0;
+    left:0;
+    width:80%;
+    height:80%;
+}
+
+.shape {
+    background-color: plum;
+    /* border: 2px dotted red; */
+    position:absolute;
+    /*
+        od współrzędnych x i y w tabeli trzeba odjąć połowę wymiarów liniowych shape
+    */
+    /*top:221px;  /*odpowiada wspólrzędnej Y */
+    /* left:305px; /*odpowiada wspólrzędnej X */
+    /* width:50px;
+    height:50px; */
+    border-radius: 50%;
+}

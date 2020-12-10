@@ -1,0 +1,9 @@
+    incrementP0Forward() {
+	           switch (this.sectionNumber) {
+                case 0: this.currentX++; break;
+                case 1: this.currentX--; break;
+                case 2: this.currentX++; break;
+                case 3: this.currentX--; break;
+                case 4: this.currentX++; break;
+	
+	}//incrementP0Forward()
