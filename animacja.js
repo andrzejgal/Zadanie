@@ -171,7 +171,36 @@ class MainData {
         animationForward = true;
     }
 
-    incrementX_part1() {
+    incrementP1Reverse() {
+        switch (this.sectionNumber) {
+            case 5: this.currentX++; break;
+            case 6: this.currentX--; break;
+            case 7: this.currentX++; break;
+            case 8: this.currentX--; break;
+            case 9: this.currentX++; break;
+        }
+        if ((this.sectionNumber==5) && (this.currentX>=this.coordinatesArray[this.sectionNumber].Xstart)) {
+            this.part--;
+            this.sectionNumber--;
+            this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
+            this.currentX = this.coordinatesArray[this.sectionNumber].Xend/*Xstart*/;
+            this.calculateYActual(this.currentX);
+        }
+        else if (this.currentX==this.coordinatesArray[this.sectionNumber].Xstart) {
+            this.sectionNumber--;
+            this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
+            this.currentX = this.coordinatesArray[this.sectionNumber].Xend;
+            this.calculateYActual(this.currentX);
+            }
+        else {
+            this.calculateYActual(this.currentX);
+            return this.YActual;
+        }
+
+    }
+
+//    incrementX_part1() {
+        incrementP1Forward() {
         switch (this.sectionNumber) {
             case 5: this.currentX--; break;
             case 6: this.currentX++; break;
@@ -179,7 +208,7 @@ class MainData {
             case 8: this.currentX++; break;
             case 9: this.currentX--; break;
         }
-        if (this.currentX == this.XminCoordinate) {//the shape heighst point reached
+        if (this.currentX == this.XminCoordinate) {//the shape lowest point reached
             this.part = 2;
             this.sectionNumber++;
             console.log(this.sectionNumer <= sectionsQuantity, 'sectionNumer greater then max number,function incrementX_part1')
@@ -215,37 +244,9 @@ class MainData {
         }
     }
 
+   
 
-    // incrementX_part0() {
-    //     switch (this.sectionNumber) {
-    //         case 0: this.currentX++; break;
-    //         case 1: this.currentX--; break;
-    //         case 2: this.currentX++; break;
-    //         case 3: this.currentX--; break;
-    //         case 4: this.currentX++; break;
-    //     }
-    //     if (this.currentX == this.XmaxCoordinate) {//the shape most bottom point reached
-    //         this.part = 1;
-    //         this.sectionNumber++;
-    //         console.log(this.sectionNumer <= sectionsQuantity, 'sectionNumer greater then max number,function incrementX_part0')
-    //         this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
-    //         this.currentX = this.coordinatesArray[this.sectionNumber].Xstart;
-    //         this.calculateYActual(this.currentX);
-    //         return this.YActual;
-    //     }
-    //     else if (this.currentX == this.coordinatesArray[this.sectionNumber].Xend) {
-    //         this.sectionNumber++;
-    //         console.log(this.sectionNumer <= sectionsQuantity, 'sectionNumer greater then max number,function incrementX_part0')
-    //         this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
-    //         this.currentX = this.coordinatesArray[this.sectionNumber].Xstart;
-    //         this.calculateYActual(this.currentX);
-    //         return this.YActual;
-    //     }
-    //     else {
-    //         this.calculateYActual(this.currentX);
-    //         return this.YActual;
-    //     }
-    // }//incrementX_part0()
+
 
     incrementP0Forward() {
         switch (this.sectionNumber) {
@@ -316,6 +317,16 @@ else if (this.currentX == this.coordinatesArray[this.sectionNumber].Xstart) {
 
     }
 
+    incrementX_part1() {
+        if (animationForward) {
+            return this.incrementP1Forward();
+        }
+        else {
+//            alert('X='+this.currentX+ 'sekcja='+this.sectionNumber);
+            return this.incrementP1Reverse();
+        }
+
+    }
 
 
 }//class MainData end
@@ -415,7 +426,7 @@ var coordinatesTableSection10 = {
 pMainData = new MainData(0);
 
 
-var animationTimer = setInterval(TimerXPlus, 50);
+var animationTimer = setInterval(TimerXPlus, 20);
 var lineY;
 
 function TimerXPlus() {
