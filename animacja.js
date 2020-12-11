@@ -350,91 +350,91 @@ class MainData {
 }//class MainData end
 
 var coordinatesTableSection0 = {
-    Xstart: 305,
-    Ystart: 213,
-    Xend: 544,
-    Yend: 280
+    Xstart: 82,
+    Ystart: 100,
+    Xend: 345,
+    Yend: 167
 };
 
 
 var coordinatesTableSection1 = {
-    Xstart: 544,
-    Ystart: 280,
-    Xend: 471,
-    Yend: 295
+    Xstart: 345,
+    Ystart: 167,
+    Xend: 259,
+    Yend: 187
 };
 
 var coordinatesTableSection2 = {
-    Xstart: 471,
-    Ystart: 295,
-    Xend: 690,
-    Yend: 359
+    Xstart: 259,
+    Ystart: 187,
+    Xend: 500,
+    Yend: 249
 };
 
 var coordinatesTableSection3 = {
-    Xstart: 690,
-    Ystart: 359,
-    Xend: 630,
-    Yend: 375
+    Xstart: 500,
+    Ystart: 249,
+    Xend: 432,
+    Yend: 268
 };
 
 
 
 var coordinatesTableSection4 = {
-    Xstart: 630,
-    Ystart: 375,
-    Xend: 1002,
-    Yend: 477
+    Xstart: 432,
+    Ystart: 268,
+    Xend: 830,
+    Yend: 375
 };
 
 
 var coordinatesTableSection5 = {
-    Xstart: 1002,
-    Ystart: 477,
-    Xend: 778,
-    Yend: 340
+    Xstart: 830,
+    Ystart: 375,
+    Xend: 587,
+    Yend: 236
 };
 
 
 var coordinatesTableSection6 = {
-    Xstart: 778,
-    Ystart: 340,
-    Xend: 835,
-    Yend: 328
+    Xstart: 587,
+    Ystart: 236,
+    Xend: 652,
+    Yend: 221
 };
 
 // 
 
 
 var coordinatesTableSection7 = {
-    Xstart: 835,
-    Ystart: 328,
-    Xend: 666,
-    Yend: 255
+    Xstart: 652,
+    Ystart: 221,
+    Xend: 468,
+    Yend: 145
 };
 
 var coordinatesTableSection8 = {
-    Xstart: 666,
-    Ystart: 255,
-    Xend: 710,
-    Yend: 240
+    Xstart: 468,
+    Ystart: 145,
+    Xend: 521,
+    Yend: 128
 };
 
 
 
 
 var coordinatesTableSection9 = {
-    Xstart: 710,
-    Ystart: 240,
-    Xend: 575,
-    Yend: 154
+    Xstart: 521,
+    Ystart: 128,
+    Xend: 377,
+    Yend: 34
 };
 
 var coordinatesTableSection10 = {
-    Xstart: 575,
-    Ystart: 154,
-    Xend: 305,
-    Yend: 213
+    Xstart: 377,
+    Ystart: 34,
+    Xend: 82,
+    Yend: 100
 };
 
 

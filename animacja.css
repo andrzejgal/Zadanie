@@ -1,7 +1,9 @@
 .wrapper {
+    position: relative;
     width: 800px;
     max-width: 80%;
     height: 400px;
+    left:50px;
     /* background-color: aqua; */
 }
 
