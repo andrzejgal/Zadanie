@@ -16,7 +16,7 @@ var shapeDimesion = 20;
 var globalXstart, globalYstart, globalXend, globalYend;
 var sectionsQuantity = 10;
 var yline;
-var animationForward ;
+var animationForward;
 
 
 
@@ -47,15 +47,15 @@ function CalculateXposition(x) {
     return sizeToString + 'px';
 }
 
-var buttonForward=document.getElementById('forward');
-buttonForward.addEventListener('click',SetForward)
-var buttonReverse=document.getElementById('reverse');
-buttonReverse.addEventListener('click',SetReverse)
+var buttonForward = document.getElementById('forward');
+buttonForward.addEventListener('click', SetForward)
+var buttonReverse = document.getElementById('reverse');
+buttonReverse.addEventListener('click', SetReverse)
 function SetForward() {
-    animationForward=true;
+    animationForward = true;
 }
 function SetReverse() {
-    animationForward=false;   
+    animationForward = false;
 }
 
 
@@ -66,7 +66,7 @@ class MainData {
         this.sectionNumber = sectionNumber;
         this.initialization();
     }
-     animationForward /* = true */;  //if
+    animationForward /* = true */;  //if
     static currentSection = 0;
     currentX;
 
@@ -179,19 +179,19 @@ class MainData {
             case 8: this.currentX--; break;
             case 9: this.currentX++; break;
         }
-        if ((this.sectionNumber==5) && (this.currentX>=this.coordinatesArray[this.sectionNumber].Xstart)) {
+        if ((this.sectionNumber == 5) && (this.currentX >= this.coordinatesArray[this.sectionNumber].Xstart)) {
             this.part--;
             this.sectionNumber--;
             this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
             this.currentX = this.coordinatesArray[this.sectionNumber].Xend/*Xstart*/;
             this.calculateYActual(this.currentX);
         }
-        else if (this.currentX==this.coordinatesArray[this.sectionNumber].Xstart) {
+        else if (this.currentX == this.coordinatesArray[this.sectionNumber].Xstart) {
             this.sectionNumber--;
             this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
             this.currentX = this.coordinatesArray[this.sectionNumber].Xend;
             this.calculateYActual(this.currentX);
-            }
+        }
         else {
             this.calculateYActual(this.currentX);
             return this.YActual;
@@ -199,8 +199,8 @@ class MainData {
 
     }
 
-//    incrementX_part1() {
-        incrementP1Forward() {
+    //    incrementX_part1() {
+    incrementP1Forward() {
         switch (this.sectionNumber) {
             case 5: this.currentX--; break;
             case 6: this.currentX++; break;
@@ -234,17 +234,35 @@ class MainData {
     }
 
     incrementX_part2() {
-        this.currentX--;
-        if (this.currentX > this.coordinatesArray[0].Xstart) {
+        if (animationForward) {
+            this.currentX--;
+            if (this.currentX > this.coordinatesArray[0].Xstart) {
+                this.calculateYActual(this.currentX);
+                return this.YActual;
+            }
+            else {
+                clearInterval(animationTimer);
+            }
+        }
+        else   {
+            this.currentX++;
+            if (this.currentX == this.coordinatesArray[this.sectionNumber].Xstart) {
+            this.part--;
+            this.sectionNumber--;
+            this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
+            this.currentX = this.coordinatesArray[this.sectionNumber].Xend;
             this.calculateYActual(this.currentX);
             return this.YActual;
-        }
-        else {
-            clearInterval(animationTimer);
+            }
+            else {
+                this.calculateYActual(this.currentX);
+                return this.YActual;
+           }
+
         }
     }
 
-   
+
 
 
 
@@ -288,10 +306,10 @@ class MainData {
             case 3: this.currentX++; break;
             case 4: this.currentX--; break;
         }
-        if ((this.sectionNumber==0) && (this.currentX <= this.coordinatesArray[this.sectionNumber].Xstart)) {//the shape most bottom point reached
+        if ((this.sectionNumber == 0) && (this.currentX <= this.coordinatesArray[this.sectionNumber].Xstart)) {//the shape most bottom point reached
             clearInterval(animationTimer);
         }
-else if (this.currentX == this.coordinatesArray[this.sectionNumber].Xstart) {
+        else if (this.currentX == this.coordinatesArray[this.sectionNumber].Xstart) {
             this.sectionNumber--;
             console.log(this.sectionNumer <= sectionsQuantity, 'sectionNumer greater then max number,function incrementX_part0')
             this.setNewSectionNumberAndReloadCoordinates(this.sectionNumber);
@@ -322,7 +340,7 @@ else if (this.currentX == this.coordinatesArray[this.sectionNumber].Xstart) {
             return this.incrementP1Forward();
         }
         else {
-//            alert('X='+this.currentX+ 'sekcja='+this.sectionNumber);
+            //            alert('X='+this.currentX+ 'sekcja='+this.sectionNumber);
             return this.incrementP1Reverse();
         }
 
