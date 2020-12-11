@@ -13,6 +13,7 @@ https://stackoverflow.com/questions/8751020/how-to-get-a-pixels-x-y-coordinate-c
 */
 
 var shapeDimesion = 20;
+var shapeDimension_mouse_over=40;
 var globalXstart, globalYstart, globalXend, globalYend;
 var sectionsQuantity = 10;
 var yline;
@@ -29,13 +30,24 @@ var animationForward;
 //     document.writeln('x=', viewPortx);
 //     document.writeln('y= ', viewPorty);
 // }
+var coordinatesTableSection0_B = {
+    Xstart: 82,
+    Ystart: 100,
+    Xend: 345,
+    Yend: 167
+};
 
+function hexToString(hex){
+    return hex.toString(16).toUpperCase();
+}
 
 var shape = document.getElementById('shape');
 shape.style.width = shapeDimesion + 'px';
 shape.style.height = shapeDimesion + 'px';
-shape.style.top = (221 + -(shapeDimesion * 0.5)) + 'px';
-shape.style.left = (305 - (shapeDimesion * 0.5)) + 'px';
+shape.style.top = (coordinatesTableSection0_B.Xstart + -(shapeDimesion * 0.5)) + 'px';
+shape.style.left = (coordinatesTableSection0_B.Ystart - (shapeDimesion * 0.5)) + 'px';
+// shape.style.backgroundColor=hexToString(0xFFFFFF);
+
 
 function CalculateYposition(y) {
     var sizeToString = (y - shapeDimesion * 0.5).toString();
@@ -51,14 +63,24 @@ var buttonForward = document.getElementById('forward');
 buttonForward.addEventListener('click', SetForward)
 var buttonReverse = document.getElementById('reverse');
 buttonReverse.addEventListener('click', SetReverse)
+
 function SetForward() {
     animationForward = true;
+    shape.style.width = shapeDimesion + 'px';
+    shape.style.height = shapeDimesion + 'px';
+
 }
 function SetReverse() {
     animationForward = false;
+    shape.style.width = shapeDimension_mouse_over + 'px';
+    shape.style.height = shapeDimension_mouse_over + 'px';
 }
 
+shape.addEventListener('mouseover',SetReverse);
+shape.addEventListener('mouseout',SetForward);
 
+var ColorsArray=['red','salmon',
+                'skyblue','cyan','green','yellow','blue','silver','plum','gold'];
 
 
 class MainData {
@@ -444,7 +466,7 @@ var coordinatesTableSection10 = {
 pMainData = new MainData(0);
 
 
-var animationTimer = setInterval(TimerXPlus, 20);
+var animationTimer = setInterval(TimerXPlus, 50);
 var lineY;
 
 function TimerXPlus() {
@@ -459,8 +481,10 @@ function TimerXPlus() {
         case 2:
             lineY = pMainData.incrementX_part2();
             break;
-    }
-    shape.style.top = CalculateYposition(lineY);
+     }
+     var col=ColorsArray[pMainData.sectionNumber];
+     shape.style.backgroundColor=col;
+     shape.style.top = CalculateYposition(lineY);
     shape.style.left = CalculateXposition(pMainData.currentX);
 
 
