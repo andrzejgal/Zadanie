@@ -1,16 +1,4 @@
 var element = document.getElementById('main-content');
-// var top=element.top
-// var left=element.left;
-// console.log(element,top,left);
-
-//alert("Twoja rozdzielczość ekranu to: " + screen.width + "x" + screen.height);
-
-/*
-wyszukiwanie: js reading screen pixel
-https://www.google.com/search?client=firefox-b-d&q=js+reading+screen+pixel
-https://stackoverflow.com/questions/8751020/how-to-get-a-pixels-x-y-coordinate-color-from-an-image
-
-*/
 
 var shapeDimesion = 20;
 var shapeDimension_mouse_over=40;
@@ -46,7 +34,6 @@ shape.style.width = shapeDimesion + 'px';
 shape.style.height = shapeDimesion + 'px';
 shape.style.top = (coordinatesTableSection0_B.Xstart + -(shapeDimesion * 0.5)) + 'px';
 shape.style.left = (coordinatesTableSection0_B.Ystart - (shapeDimesion * 0.5)) + 'px';
-// shape.style.backgroundColor=hexToString(0xFFFFFF);
 
 
 function CalculateYposition(y) {
@@ -221,7 +208,7 @@ class MainData {
 
     }
 
-    //    incrementX_part1() {
+    
     incrementP1Forward() {
         switch (this.sectionNumber) {
             case 5: this.currentX--; break;
@@ -425,7 +412,6 @@ var coordinatesTableSection6 = {
     Yend: 221
 };
 
-// 
 
 
 var coordinatesTableSection7 = {
@@ -491,173 +477,3 @@ function TimerXPlus() {
 
 }
 
-
-
-//dla section=10
-// var MData = new MainData(10);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=575;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-// //dla section=9
-// var MData = new MainData(9);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=575;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-//dla section=8
-// var MData = new MainData(8);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=710;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-// //dla section=7
-// var MData = new MainData(7);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=666;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-
-
-// dla section=6
-// var MData = new MainData(6);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=835;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-
-
-//dla section=5 
-// var MData = new MainData(5);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=778;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-
-
-// //dla section=4 
-// var MData = new MainData(4);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=1002;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-
-
-//dla section=3 
-// var MData = new MainData(3);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=630;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-
-
-// dla section=2
-// var MData = new MainData(2);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=690;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-
-// dla section=1
-// var MData = new MainData(1);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=471;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-
-
-// dla section=0
-// var MData = new MainData(0);
-// MData.loadSectionsCoordinates();
-// MData.calculateSope();
-// var slope=MData.getSlope();
-// var xIn=305;
-// MData.calculateYActual(xIn);
-// var YAc=MData.getActualY();
-// shape.style.top = CalculateYposition(YAc);
-// shape.style.left = CalculateXposition(xIn);
-
-
-
-
-
-
-
-
-
-
-
-/*
-współrzędne odcinków
-    numer   Xpocz   Ypocz   Xkoniec     Ykoniec         nachylenie
-    1       305     221     542         283
-    2       542     283     474         302
-    3       474     302     694         363
-    4       604     363     1004        477
-    5       1004    477     782         347
-    6       782     347     833         337
-    7       833     337     667         260
-    8       667     260     715         247
-    9       715     247     577         163
-    10      577     163     305         221
-*/
